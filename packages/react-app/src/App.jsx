@@ -316,6 +316,7 @@ function App(props) {
           <Menu.Item key="/subgraph">
             <Link to="/subgraph">Subgraph</Link>
           </Menu.Item>
+          
         </Menu>
       )}
 
