@@ -35,6 +35,7 @@ const blockExplorerLink = (address, blockExplorer) => `${blockExplorer || "https
 
 export default function Address(props) {
   const { currentTheme } = useThemeSwitcher();
+  const isAdvancedMode = props.isAdvancedMode;
   const address = props.value || props.address;
   const ens = useLookupAddress(props.ensProvider, address);
   const ensSplit = ens && ens.split(".");
@@ -75,12 +76,12 @@ export default function Address(props) {
 
   return (
     <span>
-      <span style={{ verticalAlign: "middle" }}>
+      {isAdvancedMode && <span style={{ verticalAlign: "middle" }}>
         <Blockies seed={address.toLowerCase()} size={8} scale={props.fontSize ? props.fontSize / 7 : 4} />
-      </span>
+      </span>}
       <span style={{ verticalAlign: "middle", paddingLeft: 5, fontSize: props.fontSize ? props.fontSize : 28 }}>
         {props.onChange ? (
-          <Text editable={{ onChange: props.onChange }} copyable={{ text: address }}>
+          <Text editable={{ onChange: props.onChange }} copyable={ isAdvancedMode && { text: address }}>
             <a
               style={{ color: currentTheme === "light" ? "#222222" : "#ddd" }}
               target="_blank"
@@ -91,7 +92,7 @@ export default function Address(props) {
             </a>
           </Text>
         ) : (
-          <Text copyable={{ text: address }}>
+          <Text copyable={isAdvancedMode && { text: address }}>
             <a
               style={{ color: currentTheme === "light" ? "#222222" : "#ddd" }}
               target="_blank"
