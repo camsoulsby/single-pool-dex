@@ -191,6 +191,8 @@ export default function SwapTab(props) {
     console.log("Swapping...");
   };
 
+  const theme = window.localStorage.getItem("theme");
+
   return (
     <div className="simple-ui-card">
       <h1>Swap</h1>
