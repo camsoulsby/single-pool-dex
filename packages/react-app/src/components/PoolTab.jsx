@@ -2,8 +2,8 @@ import React from "react";
 const PoolTab = () => {
   return (
     <div className="PoolTab">
-      <p>Pool form</p>
-      {/* Second  tab content will go here */}
+      {/* Add swap tab components below here */}
+      
     </div>
   );
 };

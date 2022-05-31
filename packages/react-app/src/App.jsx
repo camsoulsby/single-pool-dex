@@ -10,7 +10,7 @@ import {
 } from "eth-hooks";
 import { useExchangeEthPrice } from "eth-hooks/dapps/dex";
 import React, { useCallback, useEffect, useState } from "react";
-import { Link, Route, Switch, useLocation, useHistory } from "react-router-dom";
+import { Link, Route, Redirect, Switch, useLocation, useHistory } from "react-router-dom";
 import "./App.css";
 import {
   Account,
@@ -293,7 +293,7 @@ function App(props) {
       {advancedMode && (
         <Menu style={{ textAlign: "center", marginTop: 40 }} selectedKeys={[location.pathname]} mode="horizontal">
           <Menu.Item key="/">
-            <Link to="/">Simple UI</Link>
+            <Link to="/app">Simple UI</Link>
           </Menu.Item>
           <Menu.Item key="/home">
             <Link to="/Home">Home</Link>
@@ -316,15 +316,28 @@ function App(props) {
           <Menu.Item key="/subgraph">
             <Link to="/subgraph">Subgraph</Link>
           </Menu.Item>
-          
         </Menu>
       )}
 
       <Switch>
         <Route exact path="/">
+          <Redirect to="/app"/>
+        </Route>
+        <Route path="/app">
           {/* pass in any web3 props to this Home component. For example, yourLocalBalance */}
           {readContracts && readContracts.DEX && address && localProvider ? 
-          <SimpleUI/>
+          <SimpleUI
+          tx={tx}
+              writeContracts={writeContracts}
+              localProvider={localProvider}
+              mainnetProvider={mainnetProvider}
+              blockExplorer={blockExplorer}
+              address={address} //this is causing issues
+              readContracts={readContracts} //this is causing issues
+              contractConfig={contractConfig}
+              signer={userSigner}
+              price={price}
+              />
           : ""}
         </Route>
         <Route exact path="/Home">
@@ -399,7 +412,7 @@ function App(props) {
             startBlock={1}
           />
         </Route>
-        }
+        
         <Route exact path="/debug">
           {/*
                 🎛 this scaffolding is full of commonly used components
@@ -483,7 +496,7 @@ function App(props) {
 
 
       <AdvancedModeSwitch isAdvancedMode={advancedMode} advancedModeChanger={toggleAdvancedMode} />
-      {advancedMode && <ThemeSwitch />}
+      <ThemeSwitch />
 
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
       <div style={{ position: "fixed", textAlign: "right", right: 0, top: 0, padding: 10 }}>

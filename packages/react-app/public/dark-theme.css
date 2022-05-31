@@ -23868,3 +23868,145 @@ div.ant-typography-edit-content.ant-typography-rtl {
 .highlight {
   background-color: #3f3f3f;
 }
+
+/* Style for SimpleUI */
+.simpleUI {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  overflow: hidden;
+ }
+
+ .advancedModeSwitch {
+ 
+
+
+position:fixed; 
+bottom:8px;
+left: 50%;
+width: 200px;
+margin-left: -100px; /* Shift across have of component width */
+
+ }
+
+ .form-group {
+   background-color: #fff;
+   height: 335px;
+   width: 580px;
+   position:absolute;
+   bottom: 10px;
+   left: 50%;
+   margin-left: -290px;
+   padding: 10px;
+   
+  
+ }
+
+
+
+ .simple-ui-card {
+  font-family: 'Inter custom',sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: black;
+     text-align: left;
+     padding: 20px;
+   background-color: #FFF;
+   border-radius: 20px;
+   width: 600px;
+   height: 400px;
+   position:relative;
+ }
+
+   .form-row {
+    /* play with shadows later! */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); */
+   background-color: #EEE;
+   height: 100px;
+   position:relative;
+   margin: auto;
+   margin-bottom: 10px;
+   border-radius: 20px;
+ 
+ }
+
+
+ #swap-direction-button {
+height: 40px;
+width: 40px;
+position:absolute;
+top: 100px;
+left: 50%;
+margin-left: -20px;
+z-index: 1;
+border: 5px solid white;
+border-radius: 10px;
+color:black;
+ }
+
+ .tabNav {
+  position:relative;
+  height: 60px;
+  width: 600px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+
+
+  font-family: 'Inter custom',sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+   
+   background-color: #fff;
+   margin-bottom: 20px;
+   border-radius: 20px;
+   
+   
+   
+ }
+
+ .tabNavItem {
+   
+   width: 284px;
+   height: 44px;
+   border-radius: 20px;
+   color: #555;
+   text-align: center;
+   padding: 8px 0;
+   margin: 8px 8px;
+   
+   
+ }
+
+ .tabNavItem:hover {
+  color: black;
+  
+  
+}
+
+.activeTab {
+  background-color: #EEE;
+}
+
+#execute-swap-button
+{
+  background-color: teal;
+  height: 100px;
+  position:relative;
+  margin: auto;
+
+  border-radius: 20px;
+  display:block;
+  width:100%;
+}
+
+#execute-swap-button:hover {
+  background-color: blue;
+}
+
+
