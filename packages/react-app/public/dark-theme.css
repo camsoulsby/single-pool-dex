@@ -23905,6 +23905,10 @@ margin-left: -100px; /* Shift across have of component width */
   
  }
 
+ .tabs {
+   margin-top: 50px;
+ }
+
 
 
  .simple-ui-card {
@@ -23921,17 +23925,6 @@ margin-left: -100px; /* Shift across have of component width */
    position:relative;
  }
 
-   .form-row {
-    /* play with shadows later! */
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); */
-   background-color: #EEE;
-   height: 100px;
-   position:relative;
-   margin: auto;
-   margin-bottom: 10px;
-   border-radius: 20px;
- 
- }
 
 
  #swap-direction-button {
@@ -24009,5 +24002,75 @@ color:black;
 #execute-swap-button:hover {
   background-color: red;
 }
+
+/* Form row styling */
+
+.form-row {
+  /* play with shadows later! */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); */
+ background-color: #EEE;
+ height: 100px;
+ position:relative;
+ margin: auto;
+ margin-bottom: 10px;
+ border-radius: 20px;
+ 
+
+
+
+ display: flex;
+ flex-direction: row;
+ justify-content: space-around;
+ align-items: center;
+ 
+
+ font-family: 'Inter custom',sans-serif;
+ font-size: 1.2rem;
+ font-weight: 500;
+  
+
+
+}
+
+.swap-row-input {
+  color: #444;
+  border: none;
+  background-color: #EEE;
+   
+}
+
+.swap-row-input:focus {
+  outline: none;
+   
+}
+/* understand what the below means - what is css with no . or # ? */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield;
+}
+
+.swap-row-dropdown {
+  width: 120px;
+  height: 50px;
+  background-color: #ccc;
+  position: relative;
+ border-radius: 20px;
+
+}
+
+.currency-img {
+  position:absolute;
+ top: 10px;
+ left: 20px;
+}
+
+.currency-symbol {
+  position:absolute;
+  top: 10px;
+  left: 60px;
+}
+
 
 

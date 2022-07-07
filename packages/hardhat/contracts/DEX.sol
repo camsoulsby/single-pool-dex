@@ -5,6 +5,8 @@ pragma solidity >=0.8.0 <0.9.0;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 
+error notEnoughLiquidity(uint256 requested, uint256 liquidity);
+
 /**
  * @title DEX Template
  * @author stevepham.eth and m00npapi.eth
@@ -12,6 +14,7 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
  * @dev We want to create an automatic market where our contract will hold reserves of both ETH and 🎈 Balloons. These reserves will provide liquidity that allows anyone to swap between the assets.
  * NOTE: functions outlined here are what work with the front end of this branch/repo. Also return variable names that may need to be specified exactly may be referenced (if you are confused, see solutions folder in this repo and/or cross reference with front-end code).
  */
+
 contract DEX {
     /* ========== GLOBAL VARIABLES ========== */
 
@@ -99,15 +102,33 @@ contract DEX {
      * @notice returns yOutput, or yDelta for xInput (or xDelta)
      * @dev Follow along with the [original tutorial](https://medium.com/@austin_48503/%EF%B8%8F-minimum-viable-exchange-d84f30bd0c90) Price section for an understanding of the DEX's pricing model and for a price function to add to your contract. You may need to update the Solidity syntax (e.g. use + instead of .add, * instead of .mul, etc). Deploy when you are done.
      */
+
+    // given an input amount of an asset and pair reserves, returns the maximum output amount of the other asset
+
     function price(
         uint256 xInput,
         uint256 xReserves,
         uint256 yReserves
-    ) public view returns (uint256 yOutput) {
+    ) public pure returns (uint256 yOutput) {
         uint256 xInputWithFee = xInput.mul(997);
         uint256 numerator = xInputWithFee.mul(yReserves);
         uint256 denominator = (xReserves.mul(1000)).add(xInputWithFee);
         return (numerator / denominator);
+    }
+
+    // given an output amount of an asset and pair reserves, returns a required input amount of the other asset
+
+    function inversePrice(
+        uint256 desiredOutput,
+        uint256 xReserves,
+        uint256 yReserves
+    ) public pure returns (uint256 requiredInput) {
+        require(desiredOutput < xReserves);
+        uint256 numerator = xReserves.mul(desiredOutput).mul(1000);
+        uint256 denominator = yReserves.sub(desiredOutput).mul(997);
+        requiredInput = (numerator / denominator).add(1);
+
+        return requiredInput;
     }
 
     /**
@@ -139,11 +160,41 @@ contract DEX {
         return tokenOutput;
     }
 
+    function estimateEthToToken(uint256 ethInput)
+        public
+        view
+        returns (uint256 tokenOutput)
+    {
+        uint256 ethReserve = address(this).balance;
+        uint256 tokenReserve = token.balanceOf(address(this));
+        tokenOutput = price(ethInput, ethReserve, tokenReserve);
+
+        return tokenOutput;
+    }
+
+    function estimateEthRequiredForTokens(uint256 desiredOutput)
+        public
+        view
+        returns (uint256 inputRequired)
+    {
+        uint256 ethReserve = address(this).balance;
+        uint256 tokenReserve = token.balanceOf(address(this));
+        if (desiredOutput > tokenReserve) {
+            revert notEnoughLiquidity({
+                requested: desiredOutput,
+                liquidity: tokenReserve
+            });
+        }
+
+        inputRequired = inversePrice(desiredOutput, ethReserve, tokenReserve);
+
+        return inputRequired;
+    }
+
     /**
      * @notice sends $BAL tokens to DEX in exchange for Ether
      */
     function tokenToEth(uint256 tokenInput) public returns (uint256 ethOutput) {
-        require(tokenInput > 0, "cannot swap 0 tokens");
         uint256 ethReserve = address(this).balance;
         uint256 tokenReserve = token.balanceOf(address(this));
         ethOutput = price(tokenInput, tokenReserve, ethReserve);
@@ -160,6 +211,36 @@ contract DEX {
             tokenInput
         );
         return ethOutput;
+    }
+
+    function estimateTokenToEth(uint256 tokenInput)
+        public
+        view
+        returns (uint256 ethOutput)
+    {
+        uint256 ethReserve = address(this).balance;
+        uint256 tokenReserve = token.balanceOf(address(this));
+        ethOutput = price(tokenInput, tokenReserve, ethReserve);
+        return ethOutput;
+    }
+
+    function estimateTokensRequiredForEth(uint256 desiredOutput)
+        public
+        view
+        returns (uint256 inputRequired)
+    {
+        uint256 ethReserve = address(this).balance;
+        uint256 tokenReserve = token.balanceOf(address(this));
+        if (desiredOutput > ethReserve) {
+            revert notEnoughLiquidity({
+                requested: desiredOutput,
+                liquidity: ethReserve
+            });
+        }
+
+        inputRequired = inversePrice(desiredOutput, tokenReserve, ethReserve);
+
+        return inputRequired;
     }
 
     /**
@@ -180,7 +261,12 @@ contract DEX {
         totalLiquidity = totalLiquidity.add(liquidityMinted);
 
         require(token.transferFrom(msg.sender, address(this), tokenDeposit));
-        emit LiquidityProvided(msg.sender, liquidityMinted, msg.value, tokenDeposit);
+        emit LiquidityProvided(
+            msg.sender,
+            liquidityMinted,
+            msg.value,
+            tokenDeposit
+        );
         return tokenDeposit;
     }
 
@@ -188,7 +274,10 @@ contract DEX {
      * @notice allows withdrawal of $BAL and $ETH from liquidity pool
      * NOTE: with this current code, the msg caller could end up getting very little back if the liquidity is super low in the pool. I guess they could see that with the UI.
      */
-    function withdraw(uint256 amount) public returns (uint256 eth_amount, uint256 token_amount) {
+    function withdraw(uint256 amount)
+        public
+        returns (uint256 eth_amount, uint256 token_amount)
+    {
         require(
             liquidity[msg.sender] >= amount,
             "Withdraw: revert - not enough liquidity to withdraw"

@@ -1,9 +1,16 @@
 import React from "react";
 const PoolTab = () => {
   return (
-    <div className="PoolTab">
-      {/* Add swap tab components below here */}
-      
+    <div className="simple-ui-card">
+      <h1>Pool</h1>
+      <div className="form-group">
+        <h1 color="white">Test 1</h1>
+        <h1 color="white">Test 2</h1>
+
+        <button>Deposit</button>
+        <button>Unlock</button>
+        <button>Withdraw</button>
+      </div>
     </div>
   );
 };

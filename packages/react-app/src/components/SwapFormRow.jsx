@@ -1,23 +1,29 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 export default function SwapFormRow(props) {
+  const valueChangeHandler = e => {
+    // setFormValue(e.target.value);
+    props.changeValueFunction(e.target.value);
+  };
 
-    const [formValue, setFormValue] = useState(0);
+  const imgSrc = props.asset == "ether" ? "ethlogo.png" : "ballogo.png";
+  const imgSymbol = props.asset == "ether" ? "ETH" : "BAL";
 
-    const valueChangeHandler = e => {
-        setFormValue(e.target.value);
-
-    }
-
-    
   return (
     <div className="form-row">
-      <input type="text" className="swap-row-amount" value={formValue} onChange={e => valueChangeHandler(e)}></input>
+      <input
+        type="number"
+        step="0.01"
+        placeholder="0.0"
+        className="swap-row-input"
+        value={props.value}
+        onChange={e => valueChangeHandler(e)}
+      ></input>
       <div className="swap-row-dropdown">
         <div className="currency-img">
-          <img src="../../images/ethlogo.png" height="20px"/>
+          <img src={`../../images/${imgSrc}`} height="20px" />
         </div>
-        <div>{props.asset}</div>
+        <div className="currency-symbol">{imgSymbol}</div>
       </div>
     </div>
   );
