@@ -1,17 +1,117 @@
-import React from "react";
-const PoolTab = () => {
+import { useBalance, useContractReader, useBlockNumber } from "eth-hooks";
+import { useEventListener } from "eth-hooks/events/useEventListener";
+import { useTokenBalance } from "eth-hooks/erc/erc-20/useTokenBalance";
+import { ethers } from "ethers";
+import React, { useState, useEffect } from "react";
+import PoolFormRow from "./PoolFormRow";
+
+const contractName = "DEX";
+const tokenName = "Balloons";
+
+export default function PoolTab(props) {
+
+  const tx = props.tx;
+  const writeContracts = props.writeContracts;
+  const contractAddress = props.readContracts[contractName].address;
+  const tokenAddress = props.readContracts[tokenName].address;
+  const contractBalance = useBalance(props.localProvider, contractAddress);
+  const tokenBalance = useTokenBalance(props.readContracts[tokenName], contractAddress, props.localProvider);
+
+
+  const [liquidityAmount, setLiquidityAmount] = useState(0);
+  const [addingLiquidity, setAddingLiquidity] = useState(true);
+  const [addressApproved, setAddressApproved] = useState(false);
+
+  
+
+  const changeAddLiquidity = async value => {
+
+    let valuePlusExtra = ethers.utils.parseEther("" + value * 1.03);
+
+  let allowance = await props.readContracts[tokenName].allowance(
+   props.address,
+       props.readContracts[contractName].address,
+    );
+    setLiquidityAmount(value);
+    setAddingLiquidity(true);
+    if (allowance.lt(valuePlusExtra)) {
+      setAddressApproved(false);
+    } else {
+      setAddressApproved(true);
+    }
+  }
+
+  const changeWithdrawLiquidity = value => {
+      setLiquidityAmount(value);
+      setAddingLiquidity(false);
+   
+      }
+
+  const depositLiquidity = async (value) => {
+   console.log(`Depositing ${liquidityAmount} of liquidity`)
+
+     let valueInEther = ethers.utils.parseEther("" + value);
+ 
+    await tx(writeContracts[contractName]["deposit"]({ value: valueInEther, gasLimit: 200000 }));
+    }
+
+ 
+  
+  const withdrawLiquidity = async (value) => {
+     console.log(`Withdrawing ${liquidityAmount} of liquidity`)
+
+  
+    let valueInEther = ethers.utils.parseEther("" + value);
+     let withdrawTxResult = await tx(writeContracts[contractName]["withdraw"](valueInEther));
+     console.log("withdrawTxResult:", withdrawTxResult);
+
+  }
+  const approveDeposit = async (value) => {
+
+
+    
+    console.log(`Approving ${liquidityAmount} to be spent`)
+
+    let valuePlusExtra = ethers.utils.parseEther("" + value * 1.03);
+  
+ 
+   
+     await tx(
+        writeContracts[tokenName].approve(props.readContracts[contractName].address, valuePlusExtra, {
+        gasLimit: 200000,
+        }),
+     );
+     
+
+    setAddressApproved(true);
+  }
+
   return (
     <div className="simple-ui-card">
       <h1>Pool</h1>
       <div className="form-group">
-        <h1>Test 1</h1>
-        <h1>Test 2</h1>
+        <div className="form-heading"> <h1>Add Liquidity</h1></div>
+        <PoolFormRow
+          changeValueFunction={changeAddLiquidity}
+          value={addingLiquidity == true ? liquidityAmount : 0}
+          approvalNeeded={!addressApproved}
+          executeFunction={depositLiquidity}
+          approvalFunction={approveDeposit}
+          buttonLabel={"Deposit"}
+        />
+       
+        <div className="form-heading"> <h1>Withdraw Liquidity</h1></div>
 
-        <button>Deposit</button>
-        <button>Unlock</button>
-        <button>Withdraw</button>
+        <PoolFormRow
+          changeValueFunction={changeWithdrawLiquidity}
+          value={addingLiquidity == false ? liquidityAmount : 0}
+          approvalNeeded={false}
+          executeFunction={withdrawLiquidity}
+          buttonLabel={"Withdraw"}
+        />
+
       </div>
     </div>
   );
 };
-export default PoolTab;
+

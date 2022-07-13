@@ -24072,5 +24072,16 @@ input[type="number"]::-webkit-inner-spin-button {
   left: 60px;
 }
 
+.form-heading {
+  width:480px;
+  height: 60px;
+  background-color: white;
+  
+}
+
+.form-heading h1 {
+
+  color: black;
+}
 
 

@@ -1,29 +1,22 @@
-import { Form, Button, Card, Col, Divider, Input, Row } from "antd";
 import { useBalance, useContractReader, useBlockNumber } from "eth-hooks";
 import { useEventListener } from "eth-hooks/events/useEventListener";
 import { useTokenBalance } from "eth-hooks/erc/erc-20/useTokenBalance";
 import { ethers } from "ethers";
 import React, { useState, useEffect } from "react";
-import Address from "./Address";
-import Contract from "./Contract";
-import Curve from "./Curve";
-import TokenBalance from "./TokenBalance";
-import Blockies from "react-blockies";
 import SwapFormRow from "./SwapFormRow";
 
 const contractName = "DEX";
 const tokenName = "Balloons";
 
 export default function SwapTab(props) {
-  let display = [];
 
-  const [form, setForm] = useState({});
-  const [values, setValues] = useState({});
   const [liquidityError, setLiquidityError] = useState(false);
 
   const tx = props.tx;
 
   const writeContracts = props.writeContracts;
+
+  
 
   const contractAddress = props.readContracts[contractName].address;
   const tokenAddress = props.readContracts[tokenName].address;

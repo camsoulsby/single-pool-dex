@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SwapTab from "./SwapTab";
 import PoolTab from "./PoolTab";
 import { Button, Col, Menu, Row, List } from "antd";
@@ -9,6 +9,7 @@ const Tabs = props => {
   const { path, url } = useRouteMatch();
   console.log("path", path);
   console.log("url", url);
+  
 
   //  Functions to handle Tab Switching
   const handleSwapTab = () => {
@@ -75,7 +76,18 @@ const ifSwapTabActive = (activeTab == "swap") ? "activeTab" : "";
           />
         </Route>
         <Route path="/app/pool">
-          <PoolTab />
+          <PoolTab 
+           tx={tx}
+           writeContracts={writeContracts}
+           localProvider={localProvider}
+           mainnetProvider={mainnetProvider}
+           blockExplorer={blockExplorer}
+           address={address} //this is causing issues
+           readContracts={readContracts} //this is causing issues
+           contractConfig={contractConfig}
+           signer={userSigner}
+           price={price}
+           />
         </Route>
       </Switch>
     </div>
