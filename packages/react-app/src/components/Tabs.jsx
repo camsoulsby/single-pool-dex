@@ -6,10 +6,17 @@ import { Redirect, Link, Route, Switch, useLocation, useHistory, useRouteMatch }
 
 const Tabs = props => {
   const [activeTab, setActiveTab] = useState("swap");
-  const { path, url } = useRouteMatch();
-  console.log("path", path);
-  console.log("url", url);
+
+//when the route changes, update the active tab state variable to ensure that the correct tab is highlighted
+  let match = useRouteMatch("/app/:page");
+  useEffect(() => { //runs when path changes
   
+    if (match == null) { // handle /app/ case
+      setActiveTab("swap");
+    } else {
+    setActiveTab(match.params.page);
+  }
+  }, [match]); 
 
   //  Functions to handle Tab Switching
   const handleSwapTab = () => {
