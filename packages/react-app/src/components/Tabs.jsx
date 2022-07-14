@@ -39,6 +39,7 @@ const Tabs = props => {
   const contractConfig = props.contractConfig;
   const userSigner = props.signer;
   const price = props.price;
+  const yourLocalBalance = props.yourLocalBalance;
 
   //do this better
 const ifPoolTabActive = (activeTab == "pool") ? "activeTab" : "";
@@ -80,6 +81,7 @@ const ifSwapTabActive = (activeTab == "swap") ? "activeTab" : "";
             contractConfig={contractConfig}
             signer={userSigner}
             price={price}
+            yourLocalBalance= {yourLocalBalance}
           />
         </Route>
         <Route path="/app/pool">

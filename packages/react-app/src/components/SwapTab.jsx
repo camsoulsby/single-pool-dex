@@ -163,9 +163,12 @@ export default function SwapTab(props) {
       <h1>Swap</h1>
       <div className="form-group">
         <SwapFormRow
+        contracts={props.readContracts}
+        address={props.address}
           asset={fromEth ? "ether" : "balloons"}
           changeValueFunction={fromEth ? setEthValue : setBaloonsValue}
           value={fromEth ? currentEthValue : currentBalloonsValue}
+          yourLocalBalance={props.yourLocalBalance}
         />
 
         <button onClick={e => switchDirection(e)} id="swap-direction-button">
@@ -173,9 +176,12 @@ export default function SwapTab(props) {
         </button>
 
         <SwapFormRow
+        contracts={props.readContracts}
+        address={props.address}
           asset={fromEth ? "balloons" : "ether"}
           changeValueFunction={fromEth ? setBaloonsValue : setEthValue}
           value={fromEth ? currentBalloonsValue : currentEthValue}
+          yourLocalBalance={props.yourLocalBalance}
         />
         <button
           onClick={e => handleSwapButton(e)}

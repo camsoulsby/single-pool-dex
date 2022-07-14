@@ -13,6 +13,7 @@ export default function SimpleUI(props) {
   const contractConfig = props.contractConfig;
   const userSigner = props.signer;
   const price = props.price;
+  const yourLocalBalance = props.yourLocalBalance;
 
     return (
       
@@ -29,7 +30,8 @@ export default function SimpleUI(props) {
        readContracts={readContracts} //this is causing issues
        contractConfig={contractConfig}
        signer={userSigner}
-       price={price}/>
+       price={price}
+       yourLocalBalance={yourLocalBalance}/>
     </div>
   );
 }

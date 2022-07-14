@@ -337,6 +337,7 @@ function App(props) {
               contractConfig={contractConfig}
               signer={userSigner}
               price={price}
+              yourLocalBalance={yourLocalBalance}
               />
           : ""}
         </Route>
