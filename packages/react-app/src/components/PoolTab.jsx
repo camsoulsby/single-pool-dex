@@ -1,6 +1,3 @@
-import { useBalance, useContractReader, useBlockNumber } from "eth-hooks";
-import { useEventListener } from "eth-hooks/events/useEventListener";
-import { useTokenBalance } from "eth-hooks/erc/erc-20/useTokenBalance";
 import { ethers } from "ethers";
 import React, { useState, useEffect } from "react";
 import PoolFormRow from "./PoolFormRow";
@@ -12,10 +9,6 @@ export default function PoolTab(props) {
 
   const tx = props.tx;
   const writeContracts = props.writeContracts;
-  const contractAddress = props.readContracts[contractName].address;
-  const tokenAddress = props.readContracts[tokenName].address;
-  const contractBalance = useBalance(props.localProvider, contractAddress);
-  const tokenBalance = useTokenBalance(props.readContracts[tokenName], contractAddress, props.localProvider);
 
 
   const [liquidityAmount, setLiquidityAmount] = useState(0);
@@ -53,6 +46,7 @@ export default function PoolTab(props) {
      let valueInEther = ethers.utils.parseEther("" + value);
  
     await tx(writeContracts[contractName]["deposit"]({ value: valueInEther, gasLimit: 200000 }));
+    setLiquidityAmount(0);
     }
 
  
@@ -64,6 +58,7 @@ export default function PoolTab(props) {
     let valueInEther = ethers.utils.parseEther("" + value);
      let withdrawTxResult = await tx(writeContracts[contractName]["withdraw"](valueInEther));
      console.log("withdrawTxResult:", withdrawTxResult);
+     setLiquidityAmount(0);
 
   }
   const approveDeposit = async (value) => {

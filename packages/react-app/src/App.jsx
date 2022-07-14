@@ -291,7 +291,7 @@ function App(props) {
         />
       )}
       {advancedMode && (
-        <Menu style={{ textAlign: "center", marginTop: 40 }} selectedKeys={[location.pathname]} mode="horizontal">
+        <Menu style={{textAlign: "center", marginTop: 40 }} selectedKeys={[location.pathname]} mode="horizontal">
           <Menu.Item key="/">
             <Link to="/app">Simple UI</Link>
           </Menu.Item>

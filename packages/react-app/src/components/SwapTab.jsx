@@ -1,6 +1,3 @@
-import { useBalance, useContractReader, useBlockNumber } from "eth-hooks";
-import { useEventListener } from "eth-hooks/events/useEventListener";
-import { useTokenBalance } from "eth-hooks/erc/erc-20/useTokenBalance";
 import { ethers } from "ethers";
 import React, { useState, useEffect } from "react";
 import SwapFormRow from "./SwapFormRow";
@@ -15,17 +12,6 @@ export default function SwapTab(props) {
   const tx = props.tx;
 
   const writeContracts = props.writeContracts;
-
-  
-
-  const contractAddress = props.readContracts[contractName].address;
-  const tokenAddress = props.readContracts[tokenName].address;
-  const contractBalance = useBalance(props.localProvider, contractAddress);
-
-  const tokenBalance = useTokenBalance(props.readContracts[tokenName], contractAddress, props.localProvider);
-  const tokenBalanceFloat = parseFloat(ethers.utils.formatEther(tokenBalance));
-  const ethBalanceFloat = parseFloat(ethers.utils.formatEther(contractBalance));
-  const liquidity = useContractReader(props.readContracts, contractName, "totalLiquidity");
 
   const [fromEth, setFromEth] = useState(true);
   const [currentEthValue, setCurrentEthValue] = useState("");
@@ -89,8 +75,6 @@ export default function SwapTab(props) {
     e.preventDefault();
     setFromEth(!fromEth);
     setLiquidityError(false);
-    //not that this state update doesn't happen instantly - this caused some errors in console.log
-    //this is where useEffect will be used to calculate what values should be used, rather than calculating just when I change numbers in the inputs
   };
   const handleSwapButton = e => {
     e.preventDefault();
@@ -142,18 +126,12 @@ export default function SwapTab(props) {
 
   //handle change of text in ETH input
   const setEthValue = value => {
-    // if (value == "") {
-    //   value = 0.00;
-    // }
     setCurrentEthValue(value);
     setEthFixed(true);
   };
 
   //handle change of text in ballons input
   const setBaloonsValue = value => {
-    // if (value == "") {
-    //   value = 0.00;
-    // }
     setCurrentBalloonsValue(value);
     setEthFixed(false);
   };
