@@ -1,6 +1,6 @@
 import { PropertySafetyTwoTone } from "@ant-design/icons";
 import React from "react";
-import Tabs from "./Tabs";
+import { Tabs } from "../components";
 
 export default function SimpleUI(props) {
   const tx = props.tx;
