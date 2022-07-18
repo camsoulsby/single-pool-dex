@@ -32,15 +32,16 @@ export default function SwapFormRow(props) {
         value={props.value}
         onChange={e => valueChangeHandler(e)}
       ></input>
-      <div>
-        <div className="swap-row-balance">
-          <p>{displayBalance}</p>
-        </div>
+      <div className="swap-row-right-group">
+        
         <div className="swap-row-dropdown">
           <div className="currency-img">
             <img src={`../../images/${imgSrc}`} height="20px" />
           </div>
           <div className="currency-symbol">{imgSymbol}</div>
+        </div>
+        <div className="swap-row-balance">
+          <p>Balance: {displayBalance}</p>
         </div>
       </div>
     </div>

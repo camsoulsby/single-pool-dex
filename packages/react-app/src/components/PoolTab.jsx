@@ -11,9 +11,9 @@ export default function PoolTab(props) {
   const writeContracts = props.writeContracts;
 
 
-  const [liquidityAmount, setLiquidityAmount] = useState(0);
+  const [liquidityAmount, setLiquidityAmount] = useState("");
   const [addingLiquidity, setAddingLiquidity] = useState(true);
-  const [addressApproved, setAddressApproved] = useState(false);
+  const [addressApproved, setAddressApproved] = useState(true);
 
   
 
@@ -46,7 +46,7 @@ export default function PoolTab(props) {
      let valueInEther = ethers.utils.parseEther("" + value);
  
     await tx(writeContracts[contractName]["deposit"]({ value: valueInEther, gasLimit: 200000 }));
-    setLiquidityAmount(0);
+    setLiquidityAmount("");
     }
 
  
@@ -58,7 +58,7 @@ export default function PoolTab(props) {
     let valueInEther = ethers.utils.parseEther("" + value);
      let withdrawTxResult = await tx(writeContracts[contractName]["withdraw"](valueInEther));
      console.log("withdrawTxResult:", withdrawTxResult);
-     setLiquidityAmount(0);
+     setLiquidityAmount("");
 
   }
   const approveDeposit = async (value) => {
@@ -83,23 +83,23 @@ export default function PoolTab(props) {
 
   return (
     <div className="simple-ui-card">
-      <h1>Pool</h1>
+      
       <div className="form-group">
-        <div className="form-heading"> <h1>Add Liquidity</h1></div>
+        <div className="form-heading"> Add Liquidity</div>
         <PoolFormRow
           changeValueFunction={changeAddLiquidity}
-          value={addingLiquidity == true ? liquidityAmount : 0}
+          value={addingLiquidity == true ? liquidityAmount : ""}
           approvalNeeded={!addressApproved}
           executeFunction={depositLiquidity}
           approvalFunction={approveDeposit}
           buttonLabel={"Deposit"}
         />
        
-        <div className="form-heading"> <h1>Withdraw Liquidity</h1></div>
+        <div className="form-heading"> Withdraw Liquidity</div>
 
         <PoolFormRow
           changeValueFunction={changeWithdrawLiquidity}
-          value={addingLiquidity == false ? liquidityAmount : 0}
+          value={addingLiquidity == false ? liquidityAmount : ""}
           approvalNeeded={false}
           executeFunction={withdrawLiquidity}
           buttonLabel={"Withdraw"}

@@ -1,4 +1,4 @@
-import { Button, Col, Menu, Row, List } from "antd";
+import { Button, Col, Menu, Row } from "antd";
 import "antd/dist/antd.css";
 import {
   useBalance,
@@ -28,7 +28,7 @@ import {
   Address,
   Balance,
   Events,
-  AdvancedModeSwitch
+  AdvancedModeSwitch,
 } from "./components";
 import { NETWORKS, ALCHEMY_KEY } from "./constants";
 import externalContracts from "./contracts/external_contracts";
@@ -38,7 +38,6 @@ import { Transactor, Web3ModalSetup } from "./helpers";
 import { ExampleUI, Hints, Subgraph, SimpleUI } from "./views";
 import { useStaticJsonRPC } from "./hooks";
 import { useEventListener } from "eth-hooks/events/useEventListener";
-
 
 const { ethers } = require("ethers");
 /*
@@ -181,10 +180,10 @@ function App(props) {
 
   const history = useHistory();
 
-  const toggleAdvancedMode = ( advancedModeStatus) => {
+  const toggleAdvancedMode = advancedModeStatus => {
     setAdvancedMode(advancedModeStatus);
-   history.push("/");
-  }
+    history.push("/");
+  };
   /*
   const addressFromENS = useResolveName(mainnetProvider, "austingriffith.eth");
   console.log("🏷 Resolved austingriffith.eth as:",addressFromENS)
@@ -290,7 +289,7 @@ function App(props) {
         />
       )}
       {advancedMode && (
-        <Menu style={{textAlign: "center", marginTop: 40 }} selectedKeys={[location.pathname]} mode="horizontal">
+        <Menu style={{ textAlign: "center", marginTop: 40 }} selectedKeys={[location.pathname]} mode="horizontal">
           <Menu.Item key="/">
             <Link to="/app">Simple UI</Link>
           </Menu.Item>
@@ -320,13 +319,13 @@ function App(props) {
 
       <Switch>
         <Route exact path="/">
-          <Redirect to="/app"/>
+          <Redirect to="/app" />
         </Route>
         <Route path="/app">
           {/* pass in any web3 props to this Home component. For example, yourLocalBalance */}
-          {readContracts && readContracts.DEX && address && localProvider ? 
-          <SimpleUI
-          tx={tx}
+          {readContracts && readContracts.DEX && address && localProvider ? (
+            <SimpleUI
+              tx={tx}
               writeContracts={writeContracts}
               localProvider={localProvider}
               mainnetProvider={mainnetProvider}
@@ -337,8 +336,10 @@ function App(props) {
               signer={userSigner}
               price={price}
               yourLocalBalance={yourLocalBalance}
-              />
-          : ""}
+            />
+          ) : (
+            ""
+          )}
         </Route>
         <Route exact path="/Home">
           {/* pass in any web3 props to this Home component. For example, yourLocalBalance */}
@@ -412,7 +413,7 @@ function App(props) {
             startBlock={1}
           />
         </Route>
-        
+
         <Route exact path="/debug">
           {/*
                 🎛 this scaffolding is full of commonly used components
@@ -493,7 +494,6 @@ function App(props) {
           />
         </Route>
       </Switch>
-
 
       <AdvancedModeSwitch isAdvancedMode={advancedMode} advancedModeChanger={toggleAdvancedMode} />
       <ThemeSwitch />

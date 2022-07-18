@@ -667,7 +667,7 @@ input::-ms-reveal {
 body,
 html {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 }
 html {
   font-family: sans-serif;
@@ -690,7 +690,10 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-variant: tabular-nums;
   line-height: 1.5715;
-  background-color: #212121;
+  /* background: rgb(5,20,44); */
+  background: linear-gradient(328deg, rgba(5,20,44,1) 0%, rgba(60,44,26,1) 100%);
+  background-color:rgb(5,20,44);
+  background-repeat: no-repeat;
   font-feature-settings: "tnum";
 }
 [tabindex="-1"]:focus {
@@ -23873,11 +23876,12 @@ div.ant-typography-edit-content.ant-typography-rtl {
 .simpleUI {
   
   width: 100vw;
-  height: 100vh;
+  height: 550px;
   display: flex;
   /* align-items: center; */
   justify-content: center;
   overflow: hidden;
+
  }
 
  .advancedModeSwitch {
@@ -23888,28 +23892,71 @@ position:fixed;
 bottom:8px;
 left: 50%;
 width: 200px;
-margin-left: -100px; /* Shift across have of component width */
+margin-left: -100px; /* Shift across half of component width */
 
  }
 
  .form-group {
-   background-color: #fff;
-   height: 335px;
-   width: 580px;
+   background-color: black;
+   height: 100%;
+   width: 480px;
    position:absolute;
-   bottom: 10px;
    left: 50%;
-   margin-left: -290px;
-   padding: 10px;
+   margin-left: -240px;
+   padding: 7px;
+   border-radius: 20px;
    
   
  }
 
  .tabs {
-   margin-top: 50px;
+   margin-top: 25px;
  }
 
+ .tabNav {
+  position:relative;
+  height: 60px;
+  width: 480px;
 
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+
+  font-family: 'Inter custom',sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+   
+   background-color: black;
+   margin-bottom: 20px;
+   border-radius: 20px;
+   
+   
+ }
+
+ .tabNavItem {
+   
+   width: 233px;
+   height: 44px;
+   border-radius: 20px;
+   color: white;
+   text-align: center;
+   padding: 7px 0;
+   /* margin: 7px 7px; */
+   
+   
+ }
+
+ .tabNavItem:hover {
+  color: #fac371;
+  
+  
+}
+
+.activeTab {
+  background-color: #252149 ;
+}
 
  .simple-ui-card {
   font-family: 'Inter custom',sans-serif;
@@ -23917,17 +23964,17 @@ margin-left: -100px; /* Shift across have of component width */
   font-weight: 500;
   color: black;
      text-align: left;
-     padding: 20px;
-   background-color: #FFF;
+     
+   background-color: black;
    border-radius: 20px;
-   width: 600px;
-   height: 400px;
+   width: 480px;
+   height: 334px;
    position:relative;
  }
 
 
-
  #swap-direction-button {
+   background-color: #222;
 height: 40px;
 width: 40px;
 position:absolute;
@@ -23935,61 +23982,17 @@ top: 100px;
 left: 50%;
 margin-left: -20px;
 z-index: 1;
-border: 5px solid white;
+border: 5px solid black;
 border-radius: 10px;
-color:black;
+color:white;
  }
 
- .tabNav {
-  position:relative;
-  height: 60px;
-  width: 600px;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  
-
-
-  font-family: 'Inter custom',sans-serif;
-  font-size: 1.2rem;
-  font-weight: 500;
-   
-   background-color: #fff;
-   margin-bottom: 20px;
-   border-radius: 20px;
-   
-   
-   
- }
-
- .tabNavItem {
-   
-   width: 284px;
-   height: 44px;
-   border-radius: 20px;
-   color: #555;
-   text-align: center;
-   padding: 8px 0;
-   margin: 8px 8px;
-   
-   
- }
-
- .tabNavItem:hover {
-  color: black;
-  
-  
-}
-
-.activeTab {
-  background-color: #EEE;
-}
+ 
 
 #execute-swap-button
 {
-  background-color: teal;
+  /* background color set inline */
+  color: white;
   height: 100px;
   position:relative;
   margin: auto;
@@ -23998,44 +24001,56 @@ color:black;
   display:block;
   width:100%;
 }
-
-#execute-swap-button:hover {
-  background-color: red;
+#execute-swap-button:hover
+{
+  
+  color: #FAC371;
+  
 }
 
+
 /* Form row styling */
+
 
 .form-row {
   /* play with shadows later! */
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); */
- background-color: #EEE;
+
+ background-color: #222;
  height: 100px;
  position:relative;
  margin: auto;
  margin-bottom: 10px;
  border-radius: 20px;
  
-
-
-
  display: flex;
  flex-direction: row;
  justify-content: space-around;
  align-items: center;
- 
 
  font-family: 'Inter custom',sans-serif;
  font-size: 1.2rem;
  font-weight: 500;
+
+ border-style: solid;
+  border-color: black;
+  border-width: 1px;
   
-
-
 }
 
+.form-row:hover {
+  border-style: solid;
+  border-color: #444;
+  border-width: 1px;
+ }
+
 .swap-row-input {
-  color: #444;
+  
+  font-size: 2rem;
+  color: white;
   border: none;
-  background-color: #EEE;
+  background-color: #222; 
+  width: 260px;
    
 }
 
@@ -24043,7 +24058,22 @@ color:black;
   outline: none;
    
 }
-/* understand what the below means - what is css with no . or # ? */
+
+.pool-row-input {
+  
+  font-size: 2rem;
+  color: white;
+  border: none;
+  background-color: #222; 
+  width: 260px;
+   
+}
+
+.pool-row-input:focus {
+  outline: none;
+   
+}
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -24052,41 +24082,102 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .swap-row-dropdown {
+  margin-top: 15px;
   width: 120px;
-  height: 50px;
-  background-color: #ccc;
+  height: 40px;
+  background-color: #444;
   position: relative;
  border-radius: 20px;
 
 }
 
-/* .swap-row-balance {
+.swap-row-balance {
+  display: flex;
+ color: #666;
+ align-items: center;
+ justify-content: center;
+ font-size: 1rem;
  
-} */
-
+}
 
 .currency-img {
-  position:absolute;
- top: 10px;
- left: 20px;
+position:absolute;
+ top: 3px;
+ left: 15px;
 }
 
 .currency-symbol {
   position:absolute;
-  top: 10px;
-  left: 60px;
+  color: white;
+  top: 5px;
+  left: 55px;
 }
 
 .form-heading {
-  width:480px;
-  height: 60px;
-  background-color: white;
+  display: flex;
+  width:466px;
+  height: 55px;
+  background-color: black;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.swap-row-right-group {
+
+  
+  height: 85px;
   
 }
 
-.form-heading h1 {
-
-  color: black;
+.btn-approve {
+  background-color: red;
+  color: white;
+  height: 50px;
+  position:relative;
+  margin: auto;
+  border:none;
+  border-radius: 20px;
+  display:block;
+  width:120px;
+}
+.btn-approve:hover {
+  color: #FAC371;
+}
+.btn-approve:disabled {
+  background-color: #999;
+  color: #333;
+  height: 50px;
+  position:relative;
+  margin: auto;
+  border:none;
+  border-radius: 20px;
+  display:block;
+  width:120px;
 }
 
-
+.btn-pool-execute {
+  background-color: #252149;
+  color: white;
+  height: 50px;
+  position:relative;
+  margin: auto;
+  border:none;
+  border-radius: 20px;
+  display:block;
+  width:120px;
+}
+.btn-pool-execute:hover {
+  color: #FAC371;
+}
+.btn-pool-execute:disabled {
+  background-color: #999;
+  color: #333;
+  height: 50px;
+  position:relative;
+  margin: auto;
+  border:none;
+  border-radius: 20px;
+  display:block;
+  width:120px;
+}

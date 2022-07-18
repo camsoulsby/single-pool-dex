@@ -138,7 +138,7 @@ export default function SwapTab(props) {
 
   return (
     <div className="simple-ui-card">
-      <h1>Swap</h1>
+      
       <div className="form-group">
         <SwapFormRow
         contracts={props.readContracts}
@@ -164,7 +164,7 @@ export default function SwapTab(props) {
         <button
           onClick={e => handleSwapButton(e)}
           id="execute-swap-button"
-          style={{ background: `${liquidityError ? "red" : "green"}` }}
+          style={{ background: `${liquidityError ? "red" : '#252149' }` }}
         >
           {liquidityError ? "Not enough liquidity" : "Swap"}
         </button>

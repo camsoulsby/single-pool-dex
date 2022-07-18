@@ -23711,3 +23711,313 @@ ul.nav li:hover {
 ul.nav li.active {
   background: #39A2DB;
 }
+
+/* Style for SimpleUI */
+.simpleUI {
+  
+  width: 100vw;
+  height: 550px;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  overflow: hidden;
+
+ }
+
+ .advancedModeSwitch {
+ 
+
+
+position:fixed; 
+bottom:8px;
+left: 50%;
+width: 200px;
+margin-left: -100px; /* Shift across half of component width */
+
+ }
+
+ .form-group {
+   background-color: black;
+   height: 100%;
+   width: 480px;
+   position:absolute;
+   left: 50%;
+   margin-left: -240px;
+   padding: 7px;
+   border-radius: 20px;
+   
+  
+ }
+
+ .tabs {
+   margin-top: 25px;
+ }
+
+ .tabNav {
+  position:relative;
+  height: 60px;
+  width: 480px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+
+  font-family: 'Inter custom',sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+   
+   background-color: black;
+   margin-bottom: 20px;
+   border-radius: 20px;
+   
+   
+ }
+
+ .tabNavItem {
+   
+   width: 233px;
+   height: 44px;
+   border-radius: 20px;
+   color: white;
+   text-align: center;
+   padding: 7px 0;
+   /* margin: 7px 7px; */
+   
+   
+ }
+
+ .tabNavItem:hover {
+  color: #fac371;
+  
+  
+}
+
+.activeTab {
+  background-color: #252149 ;
+}
+
+ .simple-ui-card {
+  font-family: 'Inter custom',sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: black;
+     text-align: left;
+     
+   background-color: black;
+   border-radius: 20px;
+   width: 480px;
+   height: 334px;
+   position:relative;
+ }
+
+
+ #swap-direction-button {
+   background-color: #222;
+height: 40px;
+width: 40px;
+position:absolute;
+top: 100px;
+left: 50%;
+margin-left: -20px;
+z-index: 1;
+border: 5px solid black;
+border-radius: 10px;
+color:white;
+ }
+
+ 
+
+#execute-swap-button
+{
+  /* background color set inline */
+  color: white;
+  height: 100px;
+  position:relative;
+  margin: auto;
+
+  border-radius: 20px;
+  display:block;
+  width:100%;
+}
+#execute-swap-button:hover
+{
+  
+  color: #FAC371;
+  
+}
+
+
+/* Form row styling */
+
+
+.form-row {
+  /* play with shadows later! */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); */
+
+ background-color: #222;
+ height: 100px;
+ position:relative;
+ margin: auto;
+ margin-bottom: 10px;
+ border-radius: 20px;
+ 
+ display: flex;
+ flex-direction: row;
+ justify-content: space-around;
+ align-items: center;
+
+ font-family: 'Inter custom',sans-serif;
+ font-size: 1.2rem;
+ font-weight: 500;
+
+ border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  
+}
+
+.form-row:hover {
+  border-style: solid;
+  border-color: #444;
+  border-width: 1px;
+ }
+
+.swap-row-input {
+  
+  font-size: 2rem;
+  color: white;
+  border: none;
+  background-color: #222; 
+  width: 260px;
+   
+}
+
+.swap-row-input:focus {
+  outline: none;
+   
+}
+
+.pool-row-input {
+  
+  font-size: 2rem;
+  color: white;
+  border: none;
+  background-color: #222; 
+  width: 260px;
+   
+}
+
+.pool-row-input:focus {
+  outline: none;
+   
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield;
+}
+
+.swap-row-dropdown {
+  margin-top: 15px;
+  width: 120px;
+  height: 40px;
+  background-color: #444;
+  position: relative;
+ border-radius: 20px;
+
+}
+
+.swap-row-balance {
+  display: flex;
+ color: #666;
+ align-items: center;
+ justify-content: center;
+ font-size: 1rem;
+ 
+}
+
+.currency-img {
+position:absolute;
+ top: 3px;
+ left: 15px;
+}
+
+.currency-symbol {
+  position:absolute;
+  color: white;
+  top: 5px;
+  left: 55px;
+}
+
+.form-heading {
+  display: flex;
+  width:466px;
+  height: 55px;
+  background-color: black;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.swap-row-right-group {
+
+  
+  height: 85px;
+  
+}
+
+.btn-approve {
+  background-color: red;
+  color: white;
+  height: 50px;
+  position:relative;
+  margin: auto;
+  border:none;
+  border-radius: 20px;
+  display:block;
+  width:120px;
+}
+.btn-approve:hover {
+  color: #FAC371;
+}
+.btn-approve:disabled {
+  background-color: #999;
+  color: #333;
+  height: 50px;
+  position:relative;
+  margin: auto;
+  border:none;
+  border-radius: 20px;
+  display:block;
+  width:120px;
+}
+
+.btn-pool-execute {
+  background-color: #252149;
+  color: white;
+  height: 50px;
+  position:relative;
+  margin: auto;
+  border:none;
+  border-radius: 20px;
+  display:block;
+  width:120px;
+}
+.btn-pool-execute:hover {
+  color: #FAC371;
+}
+.btn-pool-execute:disabled {
+  background-color: #999;
+  color: #333;
+  height: 50px;
+  position:relative;
+  margin: auto;
+  border:none;
+  border-radius: 20px;
+  display:block;
+  width:120px;
+}
