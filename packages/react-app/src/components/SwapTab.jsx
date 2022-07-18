@@ -164,7 +164,8 @@ export default function SwapTab(props) {
         <button
           onClick={e => handleSwapButton(e)}
           id="execute-swap-button"
-          style={{ background: `${liquidityError ? "red" : '#252149' }` }}
+          className={liquidityError ? "liquidity-error-btn" : "execute-swap-btn" }
+          // style={{ background: `${liquidityError ? "red" : '#252149' }` }}
         >
           {liquidityError ? "Not enough liquidity" : "Swap"}
         </button>

@@ -1,3 +1,12 @@
+* {
+  --card-bg: #fff;
+  --form-row-bg: #cee;
+  --positive-btn: orange;
+  --negative-btn: red;
+  --btn-hover: blue;
+  --main-txt: black;
+}
+
 @keyframes antFadeIn {
   0% {
     opacity: 0;
@@ -678,6 +687,7 @@ html {
   -webkit-tap-highlight-color: transparent;
   --antd-wave-shadow-color: #1890ff;
   --scroll-bar: 0;
+
 }
 @-ms-viewport {
   width: device-width;
@@ -690,7 +700,8 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-variant: tabular-nums;
   line-height: 1.5715;
-  background-color: #fff;
+  background: rgb(255,255,255);
+  background: linear-gradient(328deg, rgba(255,255,255,1) 0%, rgba(238,227,153,1) 100%);
   font-feature-settings: "tnum";
 }
 [tabindex="-1"]:focus {
@@ -23737,7 +23748,7 @@ margin-left: -100px; /* Shift across half of component width */
  }
 
  .form-group {
-   background-color: black;
+   background-color: var(--card-bg);
    height: 100%;
    width: 480px;
    position:absolute;
@@ -23768,7 +23779,7 @@ margin-left: -100px; /* Shift across half of component width */
   font-size: 1.2rem;
   font-weight: 500;
    
-   background-color: black;
+   background-color: var(--card-bg);
    margin-bottom: 20px;
    border-radius: 20px;
    
@@ -23780,7 +23791,7 @@ margin-left: -100px; /* Shift across half of component width */
    width: 233px;
    height: 44px;
    border-radius: 20px;
-   color: white;
+   color: var(--main-txt);
    text-align: center;
    padding: 7px 0;
    /* margin: 7px 7px; */
@@ -23789,13 +23800,13 @@ margin-left: -100px; /* Shift across half of component width */
  }
 
  .tabNavItem:hover {
-  color: #fac371;
+  color: var(--btn-hover);
   
   
 }
 
 .activeTab {
-  background-color: #252149 ;
+  background-color: var(--positive-btn) ;
 }
 
  .simple-ui-card {
@@ -23805,7 +23816,7 @@ margin-left: -100px; /* Shift across half of component width */
   color: black;
      text-align: left;
      
-   background-color: black;
+   background-color: var(--card-bg);
    border-radius: 20px;
    width: 480px;
    height: 334px;
@@ -23814,7 +23825,7 @@ margin-left: -100px; /* Shift across half of component width */
 
 
  #swap-direction-button {
-   background-color: #222;
+   background-color: var(--form-row-bg);
 height: 40px;
 width: 40px;
 position:absolute;
@@ -23822,9 +23833,9 @@ top: 100px;
 left: 50%;
 margin-left: -20px;
 z-index: 1;
-border: 5px solid black;
+border: 5px solid var(--card-bg);
 border-radius: 10px;
-color:white;
+color: var(--main-txt);
  }
 
  
@@ -23832,7 +23843,7 @@ color:white;
 #execute-swap-button
 {
   /* background color set inline */
-  color: white;
+  color: var(--main-txt);
   height: 100px;
   position:relative;
   margin: auto;
@@ -23844,7 +23855,7 @@ color:white;
 #execute-swap-button:hover
 {
   
-  color: #FAC371;
+  color: var(--btn-hover);
   
 }
 
@@ -23856,7 +23867,7 @@ color:white;
   /* play with shadows later! */
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); */
 
- background-color: #222;
+ background-color: var(--form-row-bg);
  height: 100px;
  position:relative;
  margin: auto;
@@ -23873,7 +23884,7 @@ color:white;
  font-weight: 500;
 
  border-style: solid;
-  border-color: black;
+  border-color: var(--card-bg);
   border-width: 1px;
   
 }
@@ -23887,9 +23898,9 @@ color:white;
 .swap-row-input {
   
   font-size: 2rem;
-  color: white;
+  color: var(--main-txt);
   border: none;
-  background-color: #222; 
+  background-color: var(--form-row-bg); 
   width: 260px;
    
 }
@@ -23902,9 +23913,9 @@ color:white;
 .pool-row-input {
   
   font-size: 2rem;
-  color: white;
+  color: var(--main-txt);
   border: none;
-  background-color: #222; 
+  background-color: var(--form-row-bg); 
   width: 260px;
    
 }
@@ -23948,7 +23959,7 @@ position:absolute;
 
 .currency-symbol {
   position:absolute;
-  color: white;
+  color: var(--main-txt);
   top: 5px;
   left: 55px;
 }
@@ -23957,8 +23968,8 @@ position:absolute;
   display: flex;
   width:466px;
   height: 55px;
-  background-color: black;
-  color: white;
+  background-color: var(--card-bg);
+  color: var(--main-txt);
   justify-content: center;
   align-items: center;
 }
@@ -23971,8 +23982,8 @@ position:absolute;
 }
 
 .btn-approve {
-  background-color: red;
-  color: white;
+  background-color: var(--negative-btn);
+  color: var(--main-txt);
   height: 50px;
   position:relative;
   margin: auto;
@@ -23982,7 +23993,7 @@ position:absolute;
   width:120px;
 }
 .btn-approve:hover {
-  color: #FAC371;
+  color: var(--btn-hover)
 }
 .btn-approve:disabled {
   background-color: #999;
@@ -23997,8 +24008,8 @@ position:absolute;
 }
 
 .btn-pool-execute {
-  background-color: #252149;
-  color: white;
+  background-color: var(--positive-btn);
+  color: var(--main-txt);
   height: 50px;
   position:relative;
   margin: auto;
@@ -24008,7 +24019,7 @@ position:absolute;
   width:120px;
 }
 .btn-pool-execute:hover {
-  color: #FAC371;
+  color: var(--btn-hover);
 }
 .btn-pool-execute:disabled {
   background-color: #999;
@@ -24020,4 +24031,12 @@ position:absolute;
   border-radius: 20px;
   display:block;
   width:120px;
+}
+
+.execute-swap-btn {
+  background-color: var(--positive-btn) ;
+}
+
+.liquidity-error-btn {
+  background-color: var(--negative-btn) ;
 }

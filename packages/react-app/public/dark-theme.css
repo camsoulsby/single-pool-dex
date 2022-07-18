@@ -690,7 +690,6 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-variant: tabular-nums;
   line-height: 1.5715;
-  /* background: rgb(5,20,44); */
   background: linear-gradient(328deg, rgba(5,20,44,1) 0%, rgba(60,44,26,1) 100%);
   background-color:rgb(5,20,44);
   background-repeat: no-repeat;
@@ -24180,4 +24179,12 @@ position:absolute;
   border-radius: 20px;
   display:block;
   width:120px;
+}
+
+.execute-swap-btn {
+  background-color: #252149 ;
+}
+
+.liquidity-error-btn {
+  background-color: red ;
 }
