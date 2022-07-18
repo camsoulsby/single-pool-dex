@@ -1,10 +1,14 @@
 * {
   --card-bg: #fff;
-  --form-row-bg: #cee;
-  --positive-btn: orange;
+  --form-row-bg: #e4fcf9;
+  --positive-btn: rgb(110, 221, 236);
   --negative-btn: red;
-  --btn-hover: blue;
+  --btn-hover: rgb(3, 98, 126);
   --main-txt: black;
+  --btn-border: #444;
+  --dropdown-bg: rgb(189, 254, 255);
+  --disabled-btn-bg: rgb(230, 230, 230);
+  --disabled-btn-txt: rgb(208, 208, 208);
 }
 
 @keyframes antFadeIn {
@@ -23782,6 +23786,7 @@ margin-left: -100px; /* Shift across half of component width */
    background-color: var(--card-bg);
    margin-bottom: 20px;
    border-radius: 20px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
    
    
  }
@@ -23794,7 +23799,7 @@ margin-left: -100px; /* Shift across half of component width */
    color: var(--main-txt);
    text-align: center;
    padding: 7px 0;
-   /* margin: 7px 7px; */
+   
    
    
  }
@@ -23821,6 +23826,8 @@ margin-left: -100px; /* Shift across half of component width */
    width: 480px;
    height: 334px;
    position:relative;
+
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
  }
 
 
@@ -23847,7 +23854,7 @@ color: var(--main-txt);
   height: 100px;
   position:relative;
   margin: auto;
-
+  border:none;
   border-radius: 20px;
   display:block;
   width:100%;
@@ -23856,6 +23863,9 @@ color: var(--main-txt);
 {
   
   color: var(--btn-hover);
+  border-style: solid;
+  border-color: var(--btn-border);
+  border-width: 1px;
   
 }
 
@@ -23864,8 +23874,8 @@ color: var(--main-txt);
 
 
 .form-row {
-  /* play with shadows later! */
-  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); */
+  
+  
 
  background-color: var(--form-row-bg);
  height: 100px;
@@ -23936,9 +23946,10 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-top: 15px;
   width: 120px;
   height: 40px;
-  background-color: #444;
+  background-color: var(--dropdown-bg);
   position: relative;
  border-radius: 20px;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 
 }
 
@@ -23993,11 +24004,14 @@ position:absolute;
   width:120px;
 }
 .btn-approve:hover {
-  color: var(--btn-hover)
+  color: var(--btn-hover);
+  border-style: solid;
+  border-color: var(--btn-border);
+  border-width: 1px;
 }
 .btn-approve:disabled {
-  background-color: #999;
-  color: #333;
+  background-color: var(--disabled-btn-bg);
+  color: var(--disabled-btn-txt);
   height: 50px;
   position:relative;
   margin: auto;
@@ -24020,10 +24034,13 @@ position:absolute;
 }
 .btn-pool-execute:hover {
   color: var(--btn-hover);
+  border-style: solid;
+  border-color: var(--btn-border);
+  border-width: 1px;
 }
 .btn-pool-execute:disabled {
-  background-color: #999;
-  color: #333;
+  background-color: var(--disabled-btn-bg);
+  color: var(--disabled-btn-txt);
   height: 50px;
   position:relative;
   margin: auto;

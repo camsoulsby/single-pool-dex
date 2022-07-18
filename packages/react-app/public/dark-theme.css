@@ -24004,6 +24004,9 @@ color:white;
 {
   
   color: #FAC371;
+  border-style: solid;
+  border-color: #444;
+  border-width: 1px;
   
 }
 
@@ -24084,7 +24087,7 @@ input[type="number"]::-webkit-inner-spin-button {
   margin-top: 15px;
   width: 120px;
   height: 40px;
-  background-color: #444;
+  background-color: #333;
   position: relative;
  border-radius: 20px;
 
@@ -24142,10 +24145,14 @@ position:absolute;
 }
 .btn-approve:hover {
   color: #FAC371;
+  border-style: solid;
+  border-color: #444;
+  border-width: 1px;
+   
 }
 .btn-approve:disabled {
-  background-color: #999;
-  color: #333;
+  background-color: #333;
+  color: #888;
   height: 50px;
   position:relative;
   margin: auto;
@@ -24168,10 +24175,13 @@ position:absolute;
 }
 .btn-pool-execute:hover {
   color: #FAC371;
+  border-style: solid;
+  border-color: #444;
+  border-width: 1px;
 }
 .btn-pool-execute:disabled {
-  background-color: #999;
-  color: #333;
+  background-color: #333;
+  color: #888;
   height: 50px;
   position:relative;
   margin: auto;
