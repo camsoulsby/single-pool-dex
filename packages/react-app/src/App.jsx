@@ -412,6 +412,15 @@ function App(props) {
             mainnetProvider={mainnetProvider}
             startBlock={1}
           />
+
+<Events
+            contracts={readContracts}
+            contractName="Balloons"
+            eventName="Approval"
+            localProvider={localProvider}
+            mainnetProvider={mainnetProvider}
+            startBlock={1}
+          />
         </Route>
 
         <Route exact path="/debug">
