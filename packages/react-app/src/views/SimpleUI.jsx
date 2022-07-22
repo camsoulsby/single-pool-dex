@@ -1,8 +1,8 @@
-import { PropertySafetyTwoTone } from "@ant-design/icons";
 import React from "react";
 import { Tabs } from "../components";
 
 export default function SimpleUI(props) {
+  const page = props.page;
   const tx = props.tx;
   const writeContracts = props.writeContracts;
   const localProvider = props.localProvider;
@@ -15,23 +15,22 @@ export default function SimpleUI(props) {
   const price = props.price;
   const yourLocalBalance = props.yourLocalBalance;
 
-    return (
-      
-
-   
+  return (
     <div className="simpleUI">
-      <Tabs 
-       tx={tx}
-       writeContracts={writeContracts}
-       localProvider={localProvider}
-       mainnetProvider={mainnetProvider}
-       blockExplorer={blockExplorer}
-       address={address} //this is causing issues
-       readContracts={readContracts} //this is causing issues
-       contractConfig={contractConfig}
-       signer={userSigner}
-       price={price}
-       yourLocalBalance={yourLocalBalance}/>
+      <Tabs
+        page={page}
+        tx={tx}
+        writeContracts={writeContracts}
+        localProvider={localProvider}
+        mainnetProvider={mainnetProvider}
+        blockExplorer={blockExplorer}
+        address={address} //this is causing issues
+        readContracts={readContracts} //this is causing issues
+        contractConfig={contractConfig}
+        signer={userSigner}
+        price={price}
+        yourLocalBalance={yourLocalBalance}
+      />
     </div>
   );
 }

@@ -5,30 +5,7 @@ import { Button, Col, Menu, Row, List } from "antd";
 import { Redirect, Link, Route, Switch, useLocation, useHistory, useRouteMatch } from "react-router-dom";
 
 const Tabs = props => {
-  const [activeTab, setActiveTab] = useState("swap");
-
-//when the route changes, update the active tab state variable to ensure that the correct tab is highlighted
-  let match = useRouteMatch("/app/:page");
-  useEffect(() => { //runs when path changes
-  
-    if (match == null) { // handle /app/ case
-      setActiveTab("swap");
-    } else {
-    setActiveTab(match.params.page);
-  }
-  }, [match]); 
-
-  //  Functions to handle Tab Switching
-  const handleSwapTab = () => {
-    // update the state to tab1
-    setActiveTab("swap");
-  };
-  const handlePoolTab = () => {
-    // update the state to tab2
-    setActiveTab("pool");
-  };
-
-
+  const page = props.page;
   const tx = props.tx;
   const writeContracts = props.writeContracts;
   const localProvider = props.localProvider;
@@ -41,31 +18,89 @@ const Tabs = props => {
   const price = props.price;
   const yourLocalBalance = props.yourLocalBalance;
 
-  //do this better
-const ifPoolTabActive = (activeTab == "pool") ? "activeTab" : "";
-const ifSwapTabActive = (activeTab == "swap") ? "activeTab" : "";
+  console.log(`page variable = ${page}`);
+  const [activeTab, setActiveTab] = useState("page");
+  console.log(`active tab = ${activeTab}`);
+
+
+  const ifPoolTabActive = activeTab === "pool" ? true : false;
+  const ifSwapTabActive = activeTab === "swap" ? true : false;
+
+  //when the route changes, update the active tab state variable to ensure that the correct tab is highlighted
+  let match = useRouteMatch("/:page");
+  useEffect(() => {
+    //runs when path changes
+    console.log("my matching function went at least");
+
+    if (match == null) {
+      // handle /app/ case
+      setActiveTab("swap");
+    } else {
+      setActiveTab(match.params.page);
+    }
+  }, [match]);
+
+  //  Functions to handle Tab Switching
+  const handleSwapTab = () => {
+    // update the state to tab1
+    setActiveTab("swap");
+  };
+  const handlePoolTab = () => {
+    // update the state to tab2
+    setActiveTab("pool");
+  };
+
 
   return (
     <div className="tabs">
       <div className="tabNav">
-        <Link to="/app/swap">
-        <span onClick={handleSwapTab}>
-          <div className= {"tabNavItem " + ifSwapTabActive}>
-            <p>Swap</p>
-          </div>
-        </span>
+        <Link to="/swap">
+          <span onClick={handleSwapTab}>
+            <div className={`tabNavItem ${ifSwapTabActive ? "activeTab" : ""}`}>
+              <p>Swap</p>
+            </div>
+          </span>
         </Link>
 
-        <Link to="/app/pool">
-        <span onClick={handlePoolTab}>
-          <div className= {"tabNavItem "  + ifPoolTabActive}>
-            <p>Pool</p>
-          </div>
-        </span>
+        <Link to="/pool">
+          <span onClick={handlePoolTab}>
+            <div className={`tabNavItem ${ifPoolTabActive ? "activeTab" : ""}`}>
+              <p>Pool</p>
+            </div>
+          </span>
         </Link>
       </div>
 
-      <Switch>
+      {ifSwapTabActive ? (
+        <SwapTab
+          tx={tx}
+          writeContracts={writeContracts}
+          localProvider={localProvider}
+          mainnetProvider={mainnetProvider}
+          blockExplorer={blockExplorer}
+          address={address} //this is causing issues
+          readContracts={readContracts} //this is causing issues
+          contractConfig={contractConfig}
+          signer={userSigner}
+          price={price}
+          yourLocalBalance={yourLocalBalance}
+        />
+      ) : (
+        <PoolTab
+          tx={tx}
+          writeContracts={writeContracts}
+          localProvider={localProvider}
+          mainnetProvider={mainnetProvider}
+          blockExplorer={blockExplorer}
+          address={address} //this is causing issues
+          readContracts={readContracts} //this is causing issues
+          contractConfig={contractConfig}
+          signer={userSigner}
+          price={price}
+        />
+      )}
+
+      {/* <Switch>
         <Route exact path="/app">
           <Redirect to="/app/swap" />
         </Route>
@@ -81,24 +116,24 @@ const ifSwapTabActive = (activeTab == "swap") ? "activeTab" : "";
             contractConfig={contractConfig}
             signer={userSigner}
             price={price}
-            yourLocalBalance= {yourLocalBalance}
+            yourLocalBalance={yourLocalBalance}
           />
         </Route>
         <Route path="/app/pool">
-          <PoolTab 
-           tx={tx}
-           writeContracts={writeContracts}
-           localProvider={localProvider}
-           mainnetProvider={mainnetProvider}
-           blockExplorer={blockExplorer}
-           address={address} //this is causing issues
-           readContracts={readContracts} //this is causing issues
-           contractConfig={contractConfig}
-           signer={userSigner}
-           price={price}
-           />
+          <PoolTab
+            tx={tx}
+            writeContracts={writeContracts}
+            localProvider={localProvider}
+            mainnetProvider={mainnetProvider}
+            blockExplorer={blockExplorer}
+            address={address} //this is causing issues
+            readContracts={readContracts} //this is causing issues
+            contractConfig={contractConfig}
+            signer={userSigner}
+            price={price}
+          />
         </Route>
-      </Switch>
+      </Switch> */}
     </div>
   );
 };

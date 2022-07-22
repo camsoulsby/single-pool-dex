@@ -60,7 +60,7 @@ const { ethers } = require("ethers");
 */
 
 /// 📡 What chain are your contracts deployed to?
-const initialNetwork = NETWORKS.localhost; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const initialNetwork = NETWORKS.rinkeby; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
 // 😬 Sorry for all the console logging
 const DEBUG = true;
@@ -291,7 +291,7 @@ function App(props) {
       {advancedMode && (
         <Menu style={{ textAlign: "center", marginTop: 40 }} selectedKeys={[location.pathname]} mode="horizontal">
           <Menu.Item key="/">
-            <Link to="/app">Simple UI</Link>
+            <Link to="/swap">Simple UI</Link>
           </Menu.Item>
           <Menu.Item key="/home">
             <Link to="/Home">Home</Link>
@@ -319,12 +319,34 @@ function App(props) {
 
       <Switch>
         <Route exact path="/">
-          <Redirect to="/app" />
+          <Redirect to="/swap" />
         </Route>
-        <Route path="/app">
+        <Route path="/swap">
           {/* pass in any web3 props to this Home component. For example, yourLocalBalance */}
           {readContracts && readContracts.DEX && address && localProvider ? (
             <SimpleUI
+              page="swap"
+              tx={tx}
+              writeContracts={writeContracts}
+              localProvider={localProvider}
+              mainnetProvider={mainnetProvider}
+              blockExplorer={blockExplorer}
+              address={address} //this is causing issues
+              readContracts={readContracts} //this is causing issues
+              contractConfig={contractConfig}
+              signer={userSigner}
+              price={price}
+              yourLocalBalance={yourLocalBalance}
+            />
+          ) : (
+            ""
+          )}
+        </Route>
+        <Route path="/pool">
+          {/* pass in any web3 props to this Home component. For example, yourLocalBalance */}
+          {readContracts && readContracts.DEX && address && localProvider ? (
+            <SimpleUI
+              page="pool"
               tx={tx}
               writeContracts={writeContracts}
               localProvider={localProvider}
